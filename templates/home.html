@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Exam Score Predictor</title>
+    <style>
+        * {
+            background-color: #002349;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            color: white;
+            
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            
+            color: white;
+            border: 1px solid #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            
+            color: white;
+            border: 1px solid #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Student Exam Score Predictor</h2>
+
+        <form action="/predict" method="post">
+
+            <label for="Hours_Studied">Hours Studied:</label>
+            <input type="number" name="Hours_Studied" required style="color: white;"
+                placeholder="Enter Your Study Hour Between 1 to 40 ">
+
+            <label for="Attendance">Attendance:</label>
+            <input type="number" name="Attendance" style="color: white;" placeholder="Enter Your Attendance percentage Between 1 to 100" required>
+
+            <label for="Previous_Scores">Previous Scores:</label>
+            <input type="number" name="Previous_Scores" style="color: white;"  placeholder="Enter Your Previous Exam Score Between 1 to 100">
+
+            <label for="Parental_Involvement">Parental Involvement:</label>
+            <select name="Parental_Involvement" required>
+                <option value=""> Choose From This </option>
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
+
+
+            <label for="Access_to_Resources">Access to Resources:</label>
+            <select name="Access_to_Resources" required>
+                <option value=""> Choose From This </option>
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
+
+
+            <label for="Internet_Access">Internet Access:</label>
+            <select name="Internet_Access" required>
+                <option value=""> Choose From This </option>
+
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+
+            </select>
+
+            <label for="Tutoring_Sessions">Tutoring Sessions:</label>
+            <select name="Tutoring_Sessions" required>
+                <option value=""> Choose From This </option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <label for="Teacher_Quality">Teacher Quality:</label>
+            <select name="Teacher_Quality" required>
+                <option value=""> Choose From This </option>
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
+
+            <label for="Peer_Influence">Peer Influence:</label>
+            <select name="Peer_Influence" required>
+                <option value=""> Choose From This </option>
+                <option value="0">Negative</option>
+                <option value="1">Neutral</option>
+                <option value="2">Positive</option>
+
+            </select>
+
+
+
+            <label for="Learning_Disabilities">Learning Disabilities:</label>
+            <select name="Learning_Disabilities" required>
+                <option value=""> Choose From This </option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+
+            </select>
+
+            <label for="Parental_Education_Level">Parental Education Level:</label>
+            <select name="Parental_Education_Level" required>
+                <option value=""> Choose From This </option>
+                <option value="0">College</option>
+                <option value="1">High School</option>
+                <option value="2">Post Graduate</option>
+
+            </select>
+            <input type="submit" value="Predict Score">
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
